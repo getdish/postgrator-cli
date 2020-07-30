@@ -70,6 +70,7 @@ function getPostgratorConfigFromCommandLineArgs(commandLineArgs) {
         database: commandLineArgs.database,
         username: commandLineArgs.username,
         password: commandLineArgs.password,
+        ssl: true,
         options: { encrypt: commandLineArgs.secure || false },
     };
 }
