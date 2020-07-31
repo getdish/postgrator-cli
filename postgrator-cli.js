@@ -62,7 +62,7 @@ function fileIsAccessible(filePath) {
 }
 
 function getPostgratorConfigFromCommandLineArgs(commandLineArgs) {
-    return {
+    let config = {
         migrationDirectory: commandLineArgs['migration-directory'],
         driver: commandLineArgs.driver,
         host: commandLineArgs.host,
@@ -70,9 +70,12 @@ function getPostgratorConfigFromCommandLineArgs(commandLineArgs) {
         database: commandLineArgs.database,
         username: commandLineArgs.username,
         password: commandLineArgs.password,
-        ssl: true,
         options: { encrypt: commandLineArgs.secure || false },
     };
+    if(process.env.USE_SSL == 'true') {
+        config.ssl = true;
+    }
+    return config;
 }
 
 /**
